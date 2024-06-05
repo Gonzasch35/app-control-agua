@@ -19,6 +19,7 @@ class Medidor(models.Model):
     lectura_anterior = models.IntegerField(null=True, blank=True)
     lectura_actual = models.IntegerField(null=True, blank=True)
     consumo = models.IntegerField(default=0)
+    is_modificate = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Medidor {self.medidor} de {self.dueño}"
