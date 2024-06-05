@@ -39,12 +39,17 @@ class Medidor(models.Model):
 
         self.consumo = int(self.lectura_actual) - int(self.lectura_anterior)
         super(Medidor, self).save(*args, **kwargs)
-        Medidor.reset_is_modificate()
+        """ Medidor.reset_is_modificate() """
 
 
-    @classmethod
+    """ @classmethod
     def reset_is_modificate(cls):
         # Verifica si todos los medidores tienen is_modificate en True
         if cls.objects.filter(is_modificate=False).count() == 0:
             # Si todos tienen is_modificate en True, reinicializa a False
-            cls.objects.all().update(is_modificate=False)
+            cls.objects.all().update(is_modificate=False) """
+
+    @classmethod
+    def reset_all_is_modificate(cls):
+        # Reinicializa is_modificate a False para todos los medidores
+        cls.objects.all().update(is_modificate=False)
