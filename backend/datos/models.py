@@ -32,9 +32,19 @@ class Medidor(models.Model):
                 existing_medidor = Medidor.objects.get(pk=self.pk)
                 # Actualiza lectura_anterior con el valor de lectura_actual de la base de datos
                 self.lectura_anterior = existing_medidor.lectura_actual
+                self.is_modificate = True
             except Medidor.DoesNotExist:
                 # Si no existe, inicializa lectura_anterior a 0
                 self.lectura_anterior = 0
 
         self.consumo = int(self.lectura_actual) - int(self.lectura_anterior)
         super(Medidor, self).save(*args, **kwargs)
+        Medidor.reset_is_modificate()
+
+
+    @classmethod
+    def reset_is_modificate(cls):
+        # Verifica si todos los medidores tienen is_modificate en True
+        if cls.objects.filter(is_modificate=False).count() == 0:
+            # Si todos tienen is_modificate en True, reinicializa a False
+            cls.objects.all().update(is_modificate=False)
