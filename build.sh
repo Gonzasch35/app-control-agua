@@ -6,5 +6,5 @@ pip install -r requirements.txt
 
 cd backend
 
-python3 manage.py collections --no-input
+python3 manage.py collectstatic --no-input
 python3 manage.py migrate
