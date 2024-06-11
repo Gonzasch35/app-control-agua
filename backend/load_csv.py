@@ -28,7 +28,7 @@ def load_csv_to_db(csv_filename):
         for row in reader:
             print(row)
             medidor_val = row['medidor'][-4:]
-            loteo_instance = Loteo.objects.get(pk=2)  # Obtiene la instancia de Loteo, ajusta según sea necesario
+            loteo_instance = Loteo.objects.get(pk=1)  # Obtiene la instancia de Loteo, ajusta según sea necesario
             
             medidor, created = Medidor.objects.get_or_create(
                 medidor=medidor_val,
@@ -56,7 +56,7 @@ def load_csv_to_db(csv_filename):
             print(f"Medidor {row['medidor']} guardado con éxito")
 
 if __name__ == "__main__":
-    csv_filepath = 'Libro2.csv'  # Cambia esto a la ruta de tu archivo CSV
+    csv_filepath = 'Libro1.csv'  # Cambia esto a la ruta de tu archivo CSV
     load_csv_to_db(csv_filepath)
 
 
